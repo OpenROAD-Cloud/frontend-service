@@ -36,18 +36,14 @@ def send_flow_triggered(flow_id):
 
     body += '<u>Design Files:</u>'
     body += '<ul>'
-    for design_file in flow_definition['design_files']:
+    for design_file in flow_definition['verilog_files']:
         body += '<li>' + design_file + '</li>'
     body += '</ul><br>'
 
-    body += '<u>Library:</u> ' + flow_definition['library'] + '<br><br>'
+    body += '<u>Platform:</u> ' + flow_definition['platform'] + '<br><br>'
 
-    body += '<u>Stages:</u>'
-    body += '<ul>'
-    for stage in flow_definition['flow']:
-        body += '<li>' + stage + '</li><br>'
-        body += json2html.convert(json=flow_definition['stages'][stage])
-    body += '</ul><br><br>'
+    body += '<u>Die Area:</u> ' + flow_definition['die_area'] + '<br>'
+    body += '<u>Core Area:</u> ' + flow_definition['core_area'] + '<br><br>'
 
     # add to notifications table
     notification = Notification(message=flow.design.name + ' flow triggered',
@@ -61,12 +57,12 @@ def send_flow_triggered(flow_id):
     send_email(flow.design.user.email, 'OpenROAD User', 'OpenROAD | Flow Run Requested', body)
 
 @task(name='send_flow_started')
-def send_flow_started(flow_id, storage_url):
+def send_flow_started(flow_id):
     logger.info('Sending a started email for flow' + str(flow_id))
     flow = Flow.objects.get(openroad_uuid=flow_id)
 
     body = '<p>Yo! We secured a runner server for your design. Your flow just started. <br>'
-    body += "Your output files will be available at <a href='" + storage_url + "'>this link</a>. <br><br>"
+    body += "We will give you an update once the flow is completed. <br><br>"
     body += 'Want some coffee?</p><br>'
 
     # add to notifications table
@@ -101,13 +97,12 @@ def send_flow_completed(flow_id):
     send_email(flow.design.user.email, 'OpenROAD User', 'OpenROAD | Flow Completed', body)
 
 @task(name='send_flow_failed')
-def send_flow_failed(flow_id):
+def send_flow_failed(flow_id, message):
     logger.info('Sending a failed email for flow' + str(flow_id))
     flow = Flow.objects.get(openroad_uuid=flow_id)
 
     body = '<p>Ops! Looks like something went wrong with your design. <br>'
-    body += "Please, check the log files at <a href='" + flow.output_files_url + "'>this link</a>, "
-    body += 'and don\'t hesitate to trigger the flow again when you figure out the problem.</p><br><br>'
+    body += 'Error: ' + message + '<br><br>'
     body += 'Need help? Reach out to our support :)'
 
     # add to notifications table

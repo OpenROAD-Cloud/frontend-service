@@ -13,7 +13,7 @@ logger = get_task_logger(__name__)
 
 
 def get_flow_definition(repo_dir):
-    flow_definition_file = os.path.join(repo_dir, 'openroad-flow.yml')
+    flow_definition_file = os.path.join(repo_dir, 'openroad.yml')
     with open(flow_definition_file, 'r') as f:
         flow_definition = yaml.load(f)
     return flow_definition
@@ -41,11 +41,15 @@ def retrieve_commit_info(flow_id):
     # notify user
     send_flow_triggered.delay(flow.openroad_uuid)
 
+    # send to a runner
+    send_task_to_runner.delay(flow.openroad_uuid, flow.design.repo_url)
 
 @task(name='send_task_to_runner')
 def send_task_to_runner(flow_id, repo_url):
-    r = requests.post(settings.RUNNER_URL + '/start',
+    r = requests.post(settings.RUNNER_URL + '/runner/v1/start',
                       data={'flow_uuid': flow_id,
-                            'flow_repo_url': repo_url})
+                            'flow_repo_url': repo_url,
+                            'callback_url': settings.BASE_URL + '/runner-listener'
+                            })
     logger.info('Notified Runner to start flow ' + flow_id)
     logger.info('Runner responded ' + r.text)

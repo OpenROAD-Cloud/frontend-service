@@ -38,7 +38,7 @@ def get_job_definition(flow_job):
     """
     takes the cloned repo directory and extracts job definition from the yaml file
     """
-    job_definition_file = os.path.join(flow_job['job_dir'], 'openroad-flow.yml')
+    job_definition_file = os.path.join(flow_job['job_dir'], 'openroad.yml')
     with open(job_definition_file, 'r') as f:
         job_definition = yaml.load(f)
     flow_job['job_definition'] = job_definition

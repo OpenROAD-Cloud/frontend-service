@@ -1,5 +1,5 @@
 # Welcome to OpenROAD Cloud Flow
-The source code that empowers [https://flow.theopenroadproject.org/](https://flow.theopenroadproject.org/)
+The source code that empowers [https://cloud.theopenroadproject.org/](https://cloud.theopenroadproject.org/)
 
 ![version](https://img.shields.io/badge/version-beta-blue.svg)
 ![coverage](https://img.shields.io/badge/coverage-unknown-yellowgreen.svg)
@@ -8,7 +8,7 @@ The source code that empowers [https://flow.theopenroadproject.org/](https://flo
 ## Purpose
 [The OpenROAD Project](https://theopenroadproject.org/) aims at providing a 24-hour, no-human-in-the-loop layout design 
 for SoC, package and PCB with no Power-Performance-Area (PPA) loss. The cloud infrastructure set up at 
-[OpenROAD Flow](https://flow.theopenroadproject.org/) makes the tools and designs accessible through
+[OpenROAD Cloud](https://cloud.theopenroadproject.org/) makes the tools and designs accessible through
 an easy-to-use web-based interface.
 
 If you want to jump start using our platform, go to the [Quickstart](#quickstart-guide) section. 
@@ -27,7 +27,7 @@ Find our detailed documentation at [https://docs.theopenroadproject.org](https:/
 
 ## Deployment on a Private Cloud
 Although the publicly available platform enables our research and offers ease-of-use and latest 
-improvements to users around the world, OpenROAD flow can be independently deployed on a private 
+improvements to users around the world, OpenROAD Cloud can be independently deployed on a private 
 cloud infrastructure. 
 Follow our [deployment guide](https://docs.theopenroadproject.org/private-cloud.html) to get started. You can also seek [help](#help) below. 
 

@@ -119,10 +119,9 @@ class FlowView(LoginRequiredMixin, View):
         if design:
             flow = Flow(design=design)
             flow.save()
+            
             # get commit info
             retrieve_commit_info.apply_async(args=[flow.id], countdown=5)
-            # send to a runner
-            send_task_to_runner.apply_async(args=[flow.openroad_uuid, design.repo_url], countdown=5)
 
             context = {'flow': flow}
             return render(request, self.template_name, context=context)

@@ -18,13 +18,13 @@ def check_password_strength(password):
 
 def validate_repo(user_id, repo_url):
     """
-    validate that the repo exists and contains openroad-flow.yml file
+    validate that the repo exists and contains openroad.yml file
     :param repo_url: a public git URL that can be cloned
     :return: True if it is a valid design repo, False and reason if not
     """
     repo_dir = os.path.join(settings.VALIDATION_TMP_DIR, str(user_id), repo_url)
 
-    if repo_url.startswith('https://github.com/The-OpenROAD-Project/openroad-template-design'):
+    if repo_url.startswith('https://github.com/OpenROAD-Cloud/template-flow'):
         return False, 'Sorry, but you cannot import the template design to your workspace. Please, fork the repo first!'
 
     try:
@@ -34,7 +34,7 @@ def validate_repo(user_id, repo_url):
         return False, 'Cannot import repo. Are you sure this is a valid git repo?'
 
     try:
-        job_definition_file = os.path.join(repo_dir, 'openroad-flow.yml')
+        job_definition_file = os.path.join(repo_dir, 'openroad.yml')
         with open(job_definition_file, 'r') as f:
             job_definition = yaml.load(f)
         # to add more checks here later ..

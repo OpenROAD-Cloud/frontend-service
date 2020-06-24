@@ -27,6 +27,7 @@ done
 >&2 echo "Postgres is up - continuing..."
 
 # migrate any changes to the database container
+python /src/manage.py makemigrations
 python /src/manage.py migrate --noinput
 rc=$?; if [[ $rc != 0 ]]; then exit $rc; fi
 

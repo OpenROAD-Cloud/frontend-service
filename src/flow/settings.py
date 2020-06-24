@@ -142,7 +142,7 @@ VALIDATION_TMP_DIR = env.str("VALIDATION_TMP_DIR", default=str(APPS_DIR.path('va
 
 # Email Configurations
 EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
-DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='OpenROAD Flow <flow@theopenroadproject.org>')
+DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='OpenROAD Cloud <cloud@theopenroadproject.org>')
 ADMIN_NAME = env.str('ADMIN_NAME', default='Abdelrahman')
 ADMIN_EMAIL = env.str('ADMIN_EMAIL', default='abdelrahman_ibrahim@brown.edu')
 
