@@ -38,7 +38,7 @@ class Flow(models.Model):
     commit_message = models.TextField('Commit Message', default='retrieving ..')
     commit_id = models.CharField('Commit ID', max_length=40, default='retrieving ..')
     live_monitoring_url = models.URLField('Live Monitor', default='#')
-    output_files_url = models.URLField('Output Files', max_length=800, default='#')
+    output_files_url = models.URLField('Output Files', max_length=2000, default='#')
     design = models.ForeignKey(Design, on_delete=models.CASCADE)
     flow_definition = JSONField('Flow Definition', default=None, null=True, blank=True)
 
