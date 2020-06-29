@@ -17,8 +17,6 @@ user_urls = [
     path('user/designs/<int:design_id>/flow', views.user.FlowView.as_view(), name='design-flow'),
     path('user/flow/<int:flow_id>', views.user.FlowStreamView.as_view(), name='flow-stream'),
     path('user/account/profile', views.user.ProfileView.as_view(), name='profile'),
-    path('user/account/github', views.user.GitHubView.as_view(), name='github'),
-    path('user/account/gitlab', views.user.GitLabView.as_view(), name='gitlab'),
     path('user/settings', views.user.SettingsView.as_view(), name='settings'),
     path('user/documentation', views.user.DocumentationView.as_view(), name='documentation'),
 ]

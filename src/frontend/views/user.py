@@ -181,20 +181,6 @@ class ProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name)
 
 
-class GitHubView(LoginRequiredMixin, View):
-    template_name = 'user/account/github.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
-
-
-class GitLabView(LoginRequiredMixin, View):
-    template_name = 'user/account/gitlab.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
-
-
 class SettingsView(LoginRequiredMixin, View):
     template_name = 'user/settings.html'
 

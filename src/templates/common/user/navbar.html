@@ -51,25 +51,13 @@
                   <a href="{% url 'frontend:designs' %}"><i class="fa fa-braille fa-fw"></i> My Designs</a>
               </li>
               <li>
-                  <a href="#"><i class="fa fa-user fa-fw"></i> User Account<span class="fa arrow"></span></a>
-                  <ul class="nav nav-second-level">
-                      <li>
-                          <a href="{% url 'frontend:profile' %}"><i class="fa fa-user fa-fw"></i> Profile</a>
-                      </li>
-                      <li>
-                          <a href="{% url 'frontend:github' %}"><i class="fa fa-github fa-fw"></i> GitHub</a>
-                      </li>
-                      <li>
-                          <a href="{% url 'frontend:gitlab' %}"><i class="fa fa-gitlab fa-fw"></i> GitLab</a>
-                      </li>
-                  </ul>
-                  <!-- /.nav-second-level -->
+                <a href="{% url 'frontend:profile' %}"><i class="fa fa-user fa-fw"></i> User Profile</a>
               </li>
               <li>
                   <a href="{% url 'frontend:settings' %}"><i class="fa fa-gear fa-fw"></i> Settings</a>
               </li>
               <li>
-                  <a href="https://docs.theopenroadproject.org/" target="_blank"><i class="fa fa-book fa-fw"></i> Documentation</a>
+                  <a href="{% url 'frontend:documentation' %}"><i class="fa fa-book fa-fw"></i> How-to Guide</a>
               </li>
           </ul>
       </div>
