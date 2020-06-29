@@ -23,14 +23,75 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header">Documentation</h2>
+                    <h2 class="page-header">How-to Guide</h2>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Prepare Your Design</h3>
+                    <p>
+                        OpenROAD Cloud processes designs that reside in a git repository. 
+                        In order to run your own design through OpenROAD Cloud flow, 
+                        create add a file to the root of the repository and name it <code>openroad.yml</code>. 
+                        This file declares required configurations for running the flow.
+                    </p>
+                    <p>Below is a description for its fields described on the <a href="https://github.com/OpenROAD-Cloud/aes">AES example</a></p>
+                    <pre>
+                        <code>
+platform: nangate45             # currently only supports 'nangate'
 
+design_name: aes_cipher_top     # top-level design name
+
+verilog_files:                  # relative path of the source files
+- src/aes_cipher_top.v
+- src/aes_inv_cipher_top.v
+- src/aes_inv_sbox.v
+- src/aes_key_expand_128.v
+- src/aes_rcon.v
+- src/aes_sbox.v
+- src/timescale.v
+sdc_file: constraint.sdc        # relative path of the constraint file
+
+die_area: "0 0 620.15 620.6"            # die area as a box
+core_area: "10.07 11.2 610.27 610.8"    # core area as a box
+
+clock_period: 5.00             # clock period in nanoseconds
+                        </code>
+                    </pre>
+                </div>
+            </div>
+            <blockquote>
+                Make sure to upload the design files (in <code>.v</code> format) and the constraint file (in <code>.sdc</code> format) to the same repository as well.
+            </blockquote>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Run OpenROAD Cloud Flow</h3>
+                    <ol>
+                        <li>From left panel, click <strong>My Designs.</strong></li>
+                        <li>Click <strong>Import Design.</strong></li>
+                        <li>Give a name to your design (can be any arbitrary nickname), and paste in the repo URL (repository must be public).</li>
+                        <li>After the design is added, click <strong>Run on latest version.</strong></li>
+                        <li>You will receive email notifications updating you on the status of the flow.</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>Examples</h3>
+                    <ul>
+                        <li><a href="https://github.com/OpenROAD-Cloud/gcd">GCD</a></li>
+                        <li><a href="https://github.com/OpenROAD-Cloud/aes">AES</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+        </div>
+        
+        <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
 
