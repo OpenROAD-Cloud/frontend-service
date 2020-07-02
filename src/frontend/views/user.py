@@ -175,10 +175,35 @@ class FlowStreamView(LoginRequiredMixin, View):
 
 
 class ProfileView(LoginRequiredMixin, View):
-    template_name = 'user/account/profile.html'
+    template_name = 'user/profile.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        first_name = request.user.first_name
+        last_name = request.user.last_name
+        context = {
+            'first_name': first_name,
+            'last_name': last_name
+            }
+        return render(request, self.template_name, context=context)
+    
+    def post(self, request):
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+
+        request.user.first_name = first_name
+        request.user.last_name = last_name
+        request.user.save()
+
+        context = {
+            'profile_saved': True,
+            'message': 'Profile updated successfully',
+            'first_name': first_name,
+            'last_name': last_name
+        }
+        return render(request, self.template_name, context=context)
+
+
+
 
 
 class SettingsView(LoginRequiredMixin, View):

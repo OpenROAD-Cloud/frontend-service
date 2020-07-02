@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>OpenROAD Cloud | Account | Profile</title>
+
+    {% include 'common/resources-head.html' %}
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        {% include 'common/user/navbar.html' %}
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Profile</h2>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            {% if profile_saved %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% else %}
+                {% if message %}
+                    <div class="alert alert-danger">{{ message }}</div>
+                {% endif %}
+            {% endif %}
+            <form method="post" action="{% url 'frontend:profile' %}" role="form">
+                {% csrf_token %}
+                <fieldset>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <span><label>First Name: </label></span>
+                                <input id="first-name" class="form-control" placeholder="" name="first_name" type="text" autofocus required value="{{ first_name }}">
+                            </div>
+                            <div class="col-lg-6">
+                                <span><label>Last Name: </label></span>
+                                <input id="last-name" class="form-control" placeholder="" name="last_name" type="text" required value="{{ last_name }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="pull-right">
+                                <button class="btn btn-primary" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+           
+            
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3>
+                        GitHub
+                    </h3>
+                </div>
+                <div class="col-lg-12">
+                    <div class="text-dark">
+                        Connect your GitHub account to run the flow on private repositories 
+                        <span>
+                            <a class="btn btn-success btn-social btn-github">
+                            <span class="fa fa-github"></span> Connect GitHub</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-muted">
+                        Private GitHub features are currently unavailable. Want to contribute? See <a href="https://github.com/The-OpenROAD-Project/OpenROAD-Cloud" target="_blank">our GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    {% include 'common/resources-scripts.html' %}
+</body>
+
+</html>
